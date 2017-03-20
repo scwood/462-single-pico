@@ -17,6 +17,7 @@ ruleset track_trips_new {
       mileage = event:attr("mileage")
     }
     fired {
+      "IT WORKED".klog("TEST: ");
       raise explicit event "trip_processed"
         with mileage = event:attr("mileage")
     }
