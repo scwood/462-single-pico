@@ -13,4 +13,13 @@ ruleset echo {
       something = "Hello World"
   }
 
+  rule message {
+    select when echo message
+    pre {
+      input = event:attr("id")
+    }
+    send_directive("say") with
+      something = input
+  }
+
 }
