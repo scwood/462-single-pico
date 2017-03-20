@@ -26,7 +26,10 @@ ruleset track_trips_new {
   rule find_long_trips {
     select when explicit trip_processed
     pre {
-      mileage = event:attr("mileage")
+      mileage = event:attr("mileage").as("Number")
+    }
+    fired {
+      raise explicit event "found_long_trip"
     }
   }
 
