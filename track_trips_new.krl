@@ -12,8 +12,15 @@ ruleset track_trips_new {
     pre {
       mileage = event:attr("mileage")
     }
-    send_directive("trip") with
-      trip_length = mileage
+    fired {
+      raise explicit event "trip_processed"
+        attributes event:attrs()
+    }
+  }
+
+  rule find_long_trips {
+    select when explicit trip_processed
+    log ("HELO")
   }
 
 }
