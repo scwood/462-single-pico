@@ -4,7 +4,7 @@ ruleset track_trips_new {
     name "track_trips_new"
     author "Spencer Wood"
     logging on
-    shares process_trip_new
+    shares process_trip_new, find_long_trips, process_found_long_trip
   }
 
   global {
