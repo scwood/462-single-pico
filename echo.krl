@@ -16,7 +16,7 @@ ruleset echo {
   rule message {
     select when echo message
     pre {
-      input = event:attr("id")
+      input = event:attr("input")
     }
     send_directive("say") with
       something = input
