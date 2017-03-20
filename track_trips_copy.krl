@@ -18,4 +18,9 @@ ruleset track_trips_new {
     }
   }
 
+  rule find_long_trips {
+    select when explicit trip_processed
+    log ("HELO")
+  }
+
 }
