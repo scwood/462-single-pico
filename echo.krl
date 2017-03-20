@@ -1,10 +1,10 @@
 ruleset echo {
 
   meta {
-    name "Echo"
+    name "echo"
     author "Spencer Wood"
     logging on
-    shares hello
+    shares hello, message
   }
   
   rule hello {
