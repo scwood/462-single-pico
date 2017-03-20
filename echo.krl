@@ -4,7 +4,7 @@ ruleset echo {
     name "echo"
     author "Spencer Wood"
     logging on
-    shares hello, message
+    shares hello
   }
   
   rule hello {
