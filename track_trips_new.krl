@@ -14,7 +14,7 @@ ruleset track_trips_new {
     }
     fired {
       raise explicit event "trip_processed"
-        attributes event:attrs()
+        with mileage = event:attr("mileage")
     }
   }
 
