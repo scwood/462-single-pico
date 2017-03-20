@@ -32,4 +32,8 @@ ruleset track_trips_new {
     }
   }
 
+  rule process_long_trip_found {
+    select when explicit found_long_trip
+  }
+
 }
