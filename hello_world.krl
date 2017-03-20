@@ -17,6 +17,14 @@ A first ruleset for the Quickstart
       msg
     }
 
+    __testing = { "queries": [ { "name": "hello", "args": [ "obj" ] },
+      { "name": "__testing" } ],
+      "events": [ { "domain": "echo", "type": "hello",
+        "attrs": [ "name" ] }, { "domain": "hello", "type": "name", "attrs": [ "name" ] },
+      { "domain": "hello", "type" : "clear" }]
+
+
+    }
   }
 
   rule hello_world {
