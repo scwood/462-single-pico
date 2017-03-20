@@ -14,6 +14,10 @@ A first ruleset for the Quickstart
       msg = "Hello " + obj;
       msg
     }
+    __testing = { "queries": [ { "name": "hello", "args": [ "obj" ] },
+      { "name": "__testing" } ],
+      "events": [ { "domain": "echo", "type": "hello" } ]
+    }
   }
   
   rule hello_world {
@@ -21,4 +25,5 @@ A first ruleset for the Quickstart
     send_directive("say") with
       something = "Hello World"
   }
-} 
+  
+}
