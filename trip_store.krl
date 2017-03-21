@@ -17,7 +17,9 @@ ruleset trip_store {
     }
 
     long_trips = function () {
-      ent:long_trips
+      ent:long_trips.keys().map(function (timestamp) {
+        {"timestamp": timestamp, "mileage": ent:trips{[timestamp]}}
+      })
     } 
     short_trips = function () {
       ent:trips.keys().filter(function (timestamp) {
