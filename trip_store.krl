@@ -32,7 +32,7 @@ ruleset trip_store {
     }
     always {
       ent:trips := ent:trips.defaultsTo(empty_array, "initializing");
-      ent:trips.push("stuff")
+      ent:trips.append("stuff")
     }
   }
 
