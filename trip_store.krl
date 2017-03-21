@@ -9,6 +9,7 @@ ruleset trip_store {
   }
 
   global {
+    empty_hash = {}
     trips = function () {
       ent:trips
     }
@@ -29,20 +30,20 @@ ruleset trip_store {
       mileage = event:attr("mileage")
       timestamp = event:attr("time")
     }
-    fired {
-      ent:trips := ent:trips.defaultsTo([], "initializing")
+    always {
+      ent:trips := ent:trips.defaultsTo(empty_hash, "initializing")
     }
   }
 
   rule collect_long_trips {
     select when explicit found_long_trip
-    fired {
-      ent:trips := ent:trips.defaultsTo([], "initializing")
-    }
   }
 
   rule clear_trips {
     select when explicit trip_reset
+    fired {
+      ent:trips := empty_hash
+    }
   }
 
 }
