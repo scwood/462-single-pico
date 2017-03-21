@@ -31,13 +31,15 @@ ruleset trip_store {
       timestamp = event:attr("time")
     }
     always {
-      ent:trips := ent:trips.defaultsTo(empty_array, "initializing");
-      ent:trips.append("stuff")
+      ent:trips := ent:trips.append({"timestamp": timestamp, "mileage": mileage})
     }
   }
 
   rule collect_long_trips {
     select when explicit found_long_trip
+    always {
+      ent:long_trips := ent:long_trips.defaultsTo(empty_array, "initializing")
+    }
   }
 
   rule clear_trips {
