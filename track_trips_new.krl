@@ -16,7 +16,7 @@ ruleset track_trips_new {
     }
     fired {
       raise explicit event "trip_processed"
-      with mileage = event:attr("mileage") timestamp = event:attr("time")
+      with mileage = event:attr("mileage") timestamp = time:now()
     }
   }
 

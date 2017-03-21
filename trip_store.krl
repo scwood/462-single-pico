@@ -28,7 +28,7 @@ ruleset trip_store {
     select when explicit trip_processed
     pre {
       mileage = event:attr("mileage")
-      timestamp = event:attr("time")
+      timestamp = event:attr("timestamp")
     }
     always {
       ent:trips := ent:trips.defaultsTo(empty_array, "initializing");
