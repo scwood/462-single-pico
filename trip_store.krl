@@ -9,28 +9,33 @@ ruleset trip_store {
     shares trips, long_trips, short_trips
   }
 
-  global {
-    trips = function () {
-      ent:trips
-    }
+/*   global { */
+/*     trips = function () { */
+/*       ent:trips */
+/*     } */
 
-    long_trips = function () {
-      ent:long_trips
-    }
-
-    short_trips = function () {
-      ent:trips.filter(function (time, mileage) {
-        ent:long_trips{time} != ent:trips{time}
-      })
-    }
-  }
+/*     long_trips = function () { */
+/*       ent:long_trips */
+/*     } */ 
+/*     short_trips = function () { */
+/*       ent:trips.filter(function (timestamp, mileage) { */
+/*         ent:long_trips{timestamp} != ent:trips{time} */
+/*       }) */
+/*     } */
+/*   } */
 
   rule collect_trips {
     select when explicit trip_processed
+    fired {
+      ent:a := 4
+    }
   }
 
   rule collect_long_trips {
     select when explicit found_long_trip
+    always {
+      /* set ent:long_trips{event:attr{"timestamp"}} event:attr{"mileage"}; */
+    }
   }
 
   rule clear_trips {

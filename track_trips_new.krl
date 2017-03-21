@@ -13,9 +13,13 @@ ruleset track_trips_new {
 
   rule process_trip_new {
     select when car new_trip
+    pre {
+      mileage = event:attr("mileage")
+      timestamp = event:attr("time")
+    }
     fired {
       raise explicit event "trip_processed"
-        with mileage = event:attr("mileage")
+      with mileage = mileage
     }
   }
 
@@ -26,7 +30,7 @@ ruleset track_trips_new {
     }
     fired {
       raise explicit event "found_long_trip"
-        with mileage = event:attr("mileage").as("Number")
+      attributes event:attrs()
       if (mileage > long_trip)
     }
   }
