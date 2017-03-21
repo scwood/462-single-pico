@@ -20,8 +20,10 @@ ruleset trip_store {
       ent:long_trips
     } 
     short_trips = function () {
-      ent:trips.filter(function (timestamp, mileage) {
-        ent:long_trips{timestamp} != ent:trips{time}
+      ent:trips.keys().filter(function (timestamp) {
+        ent:long_trips{[timestamp]} != ent:trips{[timestamp]}
+      }).map(function (timestamp) {
+        ent:long_trips{[timestamp]}
       })
     }
   }
@@ -34,7 +36,7 @@ ruleset trip_store {
     }
     always {
       ent:trips := ent:trips.defaultsTo(empty_hash, "initializing");
-      ent:trips{[timestamp]} := mileage
+      ent:trips{[timestamp]} := {"mileage": mileage, "timestamp": timestamp}
     }
   }
 
