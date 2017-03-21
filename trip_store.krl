@@ -30,7 +30,7 @@ ruleset trip_store {
       timestamp = event:attr("time")
     }
     fired {
-      ent:trips[timestamp] = mileage
+      ent:trips := ent:trips.defaultsTo([], "initializing")
     }
   }
 
