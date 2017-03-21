@@ -36,21 +36,27 @@ ruleset trip_store {
     }
     always {
       ent:trips := ent:trips.defaultsTo(empty_hash, "initializing");
-      ent:trips{[timestamp]} := {"mileage": mileage, "timestamp": timestamp}
+      ent:trips{[timestamp]} := mileage
     }
   }
 
   rule collect_long_trips {
     select when explicit found_long_trip
+    pre {
+      mileage = event:attr("mileage")
+      timestamp = event:attr("timestamp")
+    }
     always {
-      ent:long_trips := ent:long_trips.defaultsTo(empty_array, "initializing")
+      ent:long_trips := ent:long_trips.defaultsTo(empty_array, "initializing");
+      ent:long_trips{[timestamp]} := mileage
     }
   }
 
   rule clear_trips {
     select when explicit trip_reset
     fired {
-      ent:trips := empty_hash
+      ent:trips := empty_hash;
+      ent:long_trips := empty_hash
     }
   }
 
