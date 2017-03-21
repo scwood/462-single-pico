@@ -9,7 +9,7 @@ ruleset trip_store {
   }
 
   global {
-    empty_array = []
+    empty_array = hash
     trips = function () {
       ent:trips
     }
@@ -31,8 +31,8 @@ ruleset trip_store {
       timestamp = event:attr("timestamp")
     }
     always {
-      ent:trips := ent:trips.defaultsTo(empty_array, "initializing");
-      ent:trips := ent:trips.append({"timestamp": timestamp, "mileage": mileage})
+      ent:trips := ent:trips.defaultsTo(empty_hash, "initializing");
+      ent:trips{timestamp} := mileage
     }
   }
 
@@ -46,7 +46,7 @@ ruleset trip_store {
   rule clear_trips {
     select when explicit trip_reset
     fired {
-      ent:trips := empty_array
+      ent:trips := hash
     }
   }
 
