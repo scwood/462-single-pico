@@ -36,8 +36,8 @@ ruleset trip_store {
 
   rule collect_long_trips {
     select when explicit found_long_trip
-    always {
-      /* set ent:long_trips{event:attr{"timestamp"}} event:attr{"mileage"}; */
+    fired {
+      ent:trips := ent:trips.defaultsTo([], "initializing")
     }
   }
 
