@@ -31,6 +31,7 @@ ruleset trip_store {
       timestamp = event:attr("time")
     }
     always {
+      ent:trips := ent:trips.defaultsTo(empty_array, "initializing");
       ent:trips := ent:trips.append({"timestamp": timestamp, "mileage": mileage})
     }
   }
