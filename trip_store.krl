@@ -26,8 +26,12 @@ ruleset trip_store {
 
   rule collect_trips {
     select when explicit trip_processed
+    pre {
+      mileage = event:attr("mileage")
+      timestamp = event:attr("time")
+    }
     fired {
-      ent:a := 4
+      ent:trips := 4
     }
   }
 
