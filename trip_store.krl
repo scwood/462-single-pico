@@ -28,7 +28,7 @@ ruleset trip_store {
       timestamp = event:attr("time")
     }
     fired {
-      ent:name[4] = 4
+      ent:trips[timestamp] = mileage
     }
   }
 
