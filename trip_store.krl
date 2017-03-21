@@ -4,22 +4,24 @@ ruleset trip_store {
     name "track_trips_new"
     author "Spencer Wood"
     logging on
+    provides trips, long_trips, short_trips
+    shares trips, long_trips, short_trips
   }
 
-/*   global { */
-/*     trips = function () { */
-/*       ent:trips */
-/*     } */
+  global {
+    trips = function () {
+      ent:trips
+    }
 
-/*     long_trips = function () { */
-/*       ent:long_trips */
-/*     } */ 
-/*     short_trips = function () { */
-/*       ent:trips.filter(function (timestamp, mileage) { */
-/*         ent:long_trips{timestamp} != ent:trips{time} */
-/*       }) */
-/*     } */
-/*   } */
+    long_trips = function () {
+      ent:long_trips
+    } 
+    short_trips = function () {
+      ent:trips.filter(function (timestamp, mileage) {
+        ent:long_trips{timestamp} != ent:trips{time}
+      })
+    }
+  }
 
   rule collect_trips {
     select when explicit trip_processed
