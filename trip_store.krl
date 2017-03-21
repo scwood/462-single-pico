@@ -28,7 +28,7 @@ ruleset trip_store {
       timestamp = event:attr("time")
     }
     fired {
-      ent:name.push(4)
+      ent:name[4] = 4
     }
   }
 
