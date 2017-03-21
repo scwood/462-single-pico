@@ -28,6 +28,7 @@ ruleset trip_store {
       timestamp = event:attr("time")
     }
     fired {
+      ent:name := []
     }
   }
 
