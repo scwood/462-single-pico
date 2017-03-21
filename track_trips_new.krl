@@ -13,12 +13,10 @@ ruleset track_trips_new {
   rule process_trip_new {
     select when car new_trip
     pre {
-      mileage = event:attr("mileage")
-      timestamp = event:attr("time")
     }
     fired {
       raise explicit event "trip_processed"
-      with mileage = mileage
+      with mileage = event:attr("mileage") timestamp = event:attr("time")
     }
   }
 
