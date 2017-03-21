@@ -15,7 +15,7 @@ ruleset track_trips_new {
     select when car new_trip
     fired {
       raise explicit event "trip_processed"
-  attributes event:attrs()
+        with mileage = event:attr("mileage")
     }
   }
 
