@@ -11,7 +11,10 @@ ruleset trip_store {
   global {
     empty_hash = {}
     trips = function () {
-      ent:trips }
+      ent:trips.map(function (timestamp, mileage) {
+        {"timestamp": timestamp, "mileage": mileage}
+      })
+    }
 
     long_trips = function () {
       ent:long_trips
