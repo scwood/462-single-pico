@@ -4,9 +4,6 @@ ruleset trip_store {
     name "track_trips_new"
     author "Spencer Wood"
     logging on
-    shares process_trip_new
-    provides trips, long_trips, short_trips
-    shares trips, long_trips, short_trips
   }
 
 /*   global { */
@@ -31,7 +28,6 @@ ruleset trip_store {
       timestamp = event:attr("time")
     }
     fired {
-      ent:trips := 4
     }
   }
 
